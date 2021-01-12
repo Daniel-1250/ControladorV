@@ -1,0 +1,25 @@
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.dll
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.pdb
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.dll
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.pdb
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Data.dll
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Data.pdb
+C:\Users\Edel\Documents\Visual Studio 2010\Projects\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.dll
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.pdb
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Data.dll
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Data.pdb
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csprojAssemblyReference.cache
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csproj.CopyComplete
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.dll
+C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.pdb
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.pdb
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Data.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Data.pdb
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csprojAssemblyReference.cache
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csproj.CoreCompileInputs.cache
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.csproj.CopyComplete
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Control\obj\Debug\UTTT.Ejemplo.Persona.Control.pdb
