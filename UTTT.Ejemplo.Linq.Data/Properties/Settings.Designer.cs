@@ -33,5 +33,16 @@ namespace UTTT.Ejemplo.Linq.Data.Properties {
                 return ((string)(this["PersoonaConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-TMRB37A\\SQLEXPRESS;Initial Catalog=Persona;Persist Security I" +
+            "nfo=True;User ID=sa;Password=280619")]
+        public string PersonaConnectionString1 {
+            get {
+                return ((string)(this["PersonaConnectionString1"]));
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Persoona")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Persona")]
 	public partial class DcGeneralDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,19 +30,19 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertCatSexo(CatSexo instance);
-    partial void UpdateCatSexo(CatSexo instance);
-    partial void DeleteCatSexo(CatSexo instance);
-    partial void InsertDireccion(Direccion instance);
-    partial void UpdateDireccion(Direccion instance);
-    partial void DeleteDireccion(Direccion instance);
     partial void InsertPersona(Persona instance);
     partial void UpdatePersona(Persona instance);
     partial void DeletePersona(Persona instance);
+    partial void InsertDireccion(Direccion instance);
+    partial void UpdateDireccion(Direccion instance);
+    partial void DeleteDireccion(Direccion instance);
+    partial void InsertCatSexo(CatSexo instance);
+    partial void UpdateCatSexo(CatSexo instance);
+    partial void DeleteCatSexo(CatSexo instance);
     #endregion
 		
 		public DcGeneralDataContext() : 
-				base(global::UTTT.Ejemplo.Linq.Data.Properties.Settings.Default.PersoonaConnectionString, mappingSource)
+				base(global::UTTT.Ejemplo.Linq.Data.Properties.Settings.Default.PersonaConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -71,11 +71,11 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<CatSexo> CatSexo
+		public System.Data.Linq.Table<Persona> Persona
 		{
 			get
 			{
-				return this.GetTable<CatSexo>();
+				return this.GetTable<Persona>();
 			}
 		}
 		
@@ -87,28 +87,38 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			}
 		}
 		
-		public System.Data.Linq.Table<Persona> Persona
+		public System.Data.Linq.Table<CatSexo> CatSexo
 		{
 			get
 			{
-				return this.GetTable<Persona>();
+				return this.GetTable<CatSexo>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CatSexo")]
-	public partial class CatSexo : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Persona")]
+	public partial class Persona : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id;
 		
-		private string _strValor;
+		private string _strClaveUnica;
 		
-		private string _strDescripcion;
+		private string _strNombre;
 		
-		private EntitySet<Persona> _Persona;
+		private string _strAPaterno;
+		
+		private string _strAMaterno;
+		
+		private int _idCatSexo;
+		
+		private System.Nullable<System.DateTime> _dteFechaNacimiento;
+		
+		private EntitySet<Direccion> _Direccion;
+		
+		private EntityRef<CatSexo> _CatSexo;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -116,15 +126,24 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnstrValorChanging(string value);
-    partial void OnstrValorChanged();
-    partial void OnstrDescripcionChanging(string value);
-    partial void OnstrDescripcionChanged();
+    partial void OnstrClaveUnicaChanging(string value);
+    partial void OnstrClaveUnicaChanged();
+    partial void OnstrNombreChanging(string value);
+    partial void OnstrNombreChanged();
+    partial void OnstrAPaternoChanging(string value);
+    partial void OnstrAPaternoChanged();
+    partial void OnstrAMaternoChanging(string value);
+    partial void OnstrAMaternoChanged();
+    partial void OnidCatSexoChanging(int value);
+    partial void OnidCatSexoChanged();
+    partial void OndteFechaNacimientoChanging(System.Nullable<System.DateTime> value);
+    partial void OndteFechaNacimientoChanged();
     #endregion
 		
-		public CatSexo()
+		public Persona()
 		{
-			this._Persona = new EntitySet<Persona>(new Action<Persona>(this.attach_Persona), new Action<Persona>(this.detach_Persona));
+			this._Direccion = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccion), new Action<Direccion>(this.detach_Direccion));
+			this._CatSexo = default(EntityRef<CatSexo>);
 			OnCreated();
 		}
 		
@@ -148,56 +167,174 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strValor", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string strValor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strClaveUnica", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string strClaveUnica
 		{
 			get
 			{
-				return this._strValor;
+				return this._strClaveUnica;
 			}
 			set
 			{
-				if ((this._strValor != value))
+				if ((this._strClaveUnica != value))
 				{
-					this.OnstrValorChanging(value);
+					this.OnstrClaveUnicaChanging(value);
 					this.SendPropertyChanging();
-					this._strValor = value;
-					this.SendPropertyChanged("strValor");
-					this.OnstrValorChanged();
+					this._strClaveUnica = value;
+					this.SendPropertyChanged("strClaveUnica");
+					this.OnstrClaveUnicaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strDescripcion", DbType="VarChar(50)")]
-		public string strDescripcion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strNombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string strNombre
 		{
 			get
 			{
-				return this._strDescripcion;
+				return this._strNombre;
 			}
 			set
 			{
-				if ((this._strDescripcion != value))
+				if ((this._strNombre != value))
 				{
-					this.OnstrDescripcionChanging(value);
+					this.OnstrNombreChanging(value);
 					this.SendPropertyChanging();
-					this._strDescripcion = value;
-					this.SendPropertyChanged("strDescripcion");
-					this.OnstrDescripcionChanged();
+					this._strNombre = value;
+					this.SendPropertyChanged("strNombre");
+					this.OnstrNombreChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CatSexo_Persona", Storage="_Persona", ThisKey="id", OtherKey="idCatSexo")]
-		public EntitySet<Persona> Persona
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strAPaterno", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string strAPaterno
 		{
 			get
 			{
-				return this._Persona;
+				return this._strAPaterno;
 			}
 			set
 			{
-				this._Persona.Assign(value);
+				if ((this._strAPaterno != value))
+				{
+					this.OnstrAPaternoChanging(value);
+					this.SendPropertyChanging();
+					this._strAPaterno = value;
+					this.SendPropertyChanged("strAPaterno");
+					this.OnstrAPaternoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strAMaterno", DbType="VarChar(50)")]
+		public string strAMaterno
+		{
+			get
+			{
+				return this._strAMaterno;
+			}
+			set
+			{
+				if ((this._strAMaterno != value))
+				{
+					this.OnstrAMaternoChanging(value);
+					this.SendPropertyChanging();
+					this._strAMaterno = value;
+					this.SendPropertyChanged("strAMaterno");
+					this.OnstrAMaternoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCatSexo", DbType="Int NOT NULL")]
+		public int idCatSexo
+		{
+			get
+			{
+				return this._idCatSexo;
+			}
+			set
+			{
+				if ((this._idCatSexo != value))
+				{
+					if (this._CatSexo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidCatSexoChanging(value);
+					this.SendPropertyChanging();
+					this._idCatSexo = value;
+					this.SendPropertyChanged("idCatSexo");
+					this.OnidCatSexoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dteFechaNacimiento", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dteFechaNacimiento
+		{
+			get
+			{
+				return this._dteFechaNacimiento;
+			}
+			set
+			{
+				if ((this._dteFechaNacimiento != value))
+				{
+					this.OndteFechaNacimientoChanging(value);
+					this.SendPropertyChanging();
+					this._dteFechaNacimiento = value;
+					this.SendPropertyChanged("dteFechaNacimiento");
+					this.OndteFechaNacimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Persona_Direccion", Storage="_Direccion", ThisKey="id", OtherKey="idPersona")]
+		public EntitySet<Direccion> Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				this._Direccion.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CatSexo_Persona", Storage="_CatSexo", ThisKey="idCatSexo", OtherKey="id", IsForeignKey=true)]
+		public CatSexo CatSexo
+		{
+			get
+			{
+				return this._CatSexo.Entity;
+			}
+			set
+			{
+				CatSexo previousValue = this._CatSexo.Entity;
+				if (((previousValue != value) 
+							|| (this._CatSexo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CatSexo.Entity = null;
+						previousValue.Persona.Remove(this);
+					}
+					this._CatSexo.Entity = value;
+					if ((value != null))
+					{
+						value.Persona.Add(this);
+						this._idCatSexo = value.id;
+					}
+					else
+					{
+						this._idCatSexo = default(int);
+					}
+					this.SendPropertyChanged("CatSexo");
+				}
 			}
 		}
 		
@@ -221,16 +358,16 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			}
 		}
 		
-		private void attach_Persona(Persona entity)
+		private void attach_Direccion(Direccion entity)
 		{
 			this.SendPropertyChanging();
-			entity.CatSexo = this;
+			entity.Persona = this;
 		}
 		
-		private void detach_Persona(Persona entity)
+		private void detach_Direccion(Direccion entity)
 		{
 			this.SendPropertyChanging();
-			entity.CatSexo = null;
+			entity.Persona = null;
 		}
 	}
 	
@@ -433,27 +570,19 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Persona")]
-	public partial class Persona : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CatSexo")]
+	public partial class CatSexo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id;
 		
-		private string _strClaveUnica;
+		private string _strValor;
 		
-		private string _strNombre;
+		private string _strDescripcion;
 		
-		private string _strAPaterno;
-		
-		private string _strAMaterno;
-		
-		private int _idCatSexo;
-		
-		private EntitySet<Direccion> _Direccion;
-		
-		private EntityRef<CatSexo> _CatSexo;
+		private EntitySet<Persona> _Persona;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -461,22 +590,15 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnstrClaveUnicaChanging(string value);
-    partial void OnstrClaveUnicaChanged();
-    partial void OnstrNombreChanging(string value);
-    partial void OnstrNombreChanged();
-    partial void OnstrAPaternoChanging(string value);
-    partial void OnstrAPaternoChanged();
-    partial void OnstrAMaternoChanging(string value);
-    partial void OnstrAMaternoChanged();
-    partial void OnidCatSexoChanging(int value);
-    partial void OnidCatSexoChanged();
+    partial void OnstrValorChanging(string value);
+    partial void OnstrValorChanged();
+    partial void OnstrDescripcionChanging(string value);
+    partial void OnstrDescripcionChanged();
     #endregion
 		
-		public Persona()
+		public CatSexo()
 		{
-			this._Direccion = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccion), new Action<Direccion>(this.detach_Direccion));
-			this._CatSexo = default(EntityRef<CatSexo>);
+			this._Persona = new EntitySet<Persona>(new Action<Persona>(this.attach_Persona), new Action<Persona>(this.detach_Persona));
 			OnCreated();
 		}
 		
@@ -500,154 +622,56 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strClaveUnica", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string strClaveUnica
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strValor", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string strValor
 		{
 			get
 			{
-				return this._strClaveUnica;
+				return this._strValor;
 			}
 			set
 			{
-				if ((this._strClaveUnica != value))
+				if ((this._strValor != value))
 				{
-					this.OnstrClaveUnicaChanging(value);
+					this.OnstrValorChanging(value);
 					this.SendPropertyChanging();
-					this._strClaveUnica = value;
-					this.SendPropertyChanged("strClaveUnica");
-					this.OnstrClaveUnicaChanged();
+					this._strValor = value;
+					this.SendPropertyChanged("strValor");
+					this.OnstrValorChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strNombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string strNombre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strDescripcion", DbType="VarChar(50)")]
+		public string strDescripcion
 		{
 			get
 			{
-				return this._strNombre;
+				return this._strDescripcion;
 			}
 			set
 			{
-				if ((this._strNombre != value))
+				if ((this._strDescripcion != value))
 				{
-					this.OnstrNombreChanging(value);
+					this.OnstrDescripcionChanging(value);
 					this.SendPropertyChanging();
-					this._strNombre = value;
-					this.SendPropertyChanged("strNombre");
-					this.OnstrNombreChanged();
+					this._strDescripcion = value;
+					this.SendPropertyChanged("strDescripcion");
+					this.OnstrDescripcionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strAPaterno", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string strAPaterno
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CatSexo_Persona", Storage="_Persona", ThisKey="id", OtherKey="idCatSexo")]
+		public EntitySet<Persona> Persona
 		{
 			get
 			{
-				return this._strAPaterno;
+				return this._Persona;
 			}
 			set
 			{
-				if ((this._strAPaterno != value))
-				{
-					this.OnstrAPaternoChanging(value);
-					this.SendPropertyChanging();
-					this._strAPaterno = value;
-					this.SendPropertyChanged("strAPaterno");
-					this.OnstrAPaternoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strAMaterno", DbType="VarChar(50)")]
-		public string strAMaterno
-		{
-			get
-			{
-				return this._strAMaterno;
-			}
-			set
-			{
-				if ((this._strAMaterno != value))
-				{
-					this.OnstrAMaternoChanging(value);
-					this.SendPropertyChanging();
-					this._strAMaterno = value;
-					this.SendPropertyChanged("strAMaterno");
-					this.OnstrAMaternoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCatSexo", DbType="Int NOT NULL")]
-		public int idCatSexo
-		{
-			get
-			{
-				return this._idCatSexo;
-			}
-			set
-			{
-				if ((this._idCatSexo != value))
-				{
-					if (this._CatSexo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidCatSexoChanging(value);
-					this.SendPropertyChanging();
-					this._idCatSexo = value;
-					this.SendPropertyChanged("idCatSexo");
-					this.OnidCatSexoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Persona_Direccion", Storage="_Direccion", ThisKey="id", OtherKey="idPersona")]
-		public EntitySet<Direccion> Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				this._Direccion.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CatSexo_Persona", Storage="_CatSexo", ThisKey="idCatSexo", OtherKey="id", IsForeignKey=true)]
-		public CatSexo CatSexo
-		{
-			get
-			{
-				return this._CatSexo.Entity;
-			}
-			set
-			{
-				CatSexo previousValue = this._CatSexo.Entity;
-				if (((previousValue != value) 
-							|| (this._CatSexo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CatSexo.Entity = null;
-						previousValue.Persona.Remove(this);
-					}
-					this._CatSexo.Entity = value;
-					if ((value != null))
-					{
-						value.Persona.Add(this);
-						this._idCatSexo = value.id;
-					}
-					else
-					{
-						this._idCatSexo = default(int);
-					}
-					this.SendPropertyChanged("CatSexo");
-				}
+				this._Persona.Assign(value);
 			}
 		}
 		
@@ -671,16 +695,16 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			}
 		}
 		
-		private void attach_Direccion(Direccion entity)
+		private void attach_Persona(Persona entity)
 		{
 			this.SendPropertyChanging();
-			entity.Persona = this;
+			entity.CatSexo = this;
 		}
 		
-		private void detach_Direccion(Direccion entity)
+		private void detach_Persona(Persona entity)
 		{
 			this.SendPropertyChanging();
-			entity.Persona = null;
+			entity.CatSexo = null;
 		}
 	}
 }
