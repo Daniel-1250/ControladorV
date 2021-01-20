@@ -32,5 +32,13 @@ persist security info=True;</Value>
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=DESKTOP-TMRB37A\SQLEXPRESS;Initial Catalog=Persona;Persist Security Info=True;User ID=sa;Password=280619</Value>
     </Setting>
+    <Setting Name="DBPersona2ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DBPersona2.mssql.somee.com;Initial Catalog=DBPersona2;Persist Security Info=True;User ID=DanielPerez_SQLLogin_3;Password=tvxn6qmtu7&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DBPersona2.mssql.somee.com;Initial Catalog=DBPersona2;Persist Security Info=True;User ID=DanielPerez_SQLLogin_3;Password=tvxn6qmtu7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

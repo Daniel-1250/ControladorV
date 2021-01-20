@@ -71,7 +71,7 @@ namespace UTTT.Ejemplo.Persona
                     if (this.idPersona == 0)
                     {
                         this.lblAccion.Text = "Agregar";
-                        DateTime tiempo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day); 
+                        DateTime tiempo = new DateTime((DateTime.Now.Year)-20, DateTime.Now.Month, DateTime.Now.Day); 
                         this.dteCalendar.TodaysDate = tiempo; 
                         this.dteCalendar.SelectedDate = tiempo;
                     }
@@ -82,6 +82,9 @@ namespace UTTT.Ejemplo.Persona
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
+                        this.txtCorreroElectronico.Text = this.baseEntity.strCorreoElecrronico;
+                        this.txtCodigoPostal.Text = this.baseEntity.strCodigoPostal;
+                        this.txtRfc.Text = this.baseEntity.strRfc;
                         this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                         DateTime fechaNacimiento = (DateTime)this.baseEntity.dteFechaNacimiento;
                         if (fechaNacimiento !=null)
@@ -116,6 +119,9 @@ namespace UTTT.Ejemplo.Persona
                     persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                     DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
                     persona.dteFechaNacimiento = fechaNacimineto;
+                    persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
+                    persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
+                    persona.strRfc = this.txtRfc.Text.Trim();
                     dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().InsertOnSubmit(persona);
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se agrego correctamente.");
@@ -132,6 +138,9 @@ namespace UTTT.Ejemplo.Persona
                     persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                     DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
                     persona.dteFechaNacimiento = fechaNacimineto;
+                    persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
+                    persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
+                    persona.strRfc = this.txtRfc.Text.Trim();
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se edito correctamente.");
                     this.Response.Redirect("~/PersonaPrincipal.aspx", false);

@@ -22,7 +22,7 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Persona")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DBPersona2")]
 	public partial class DcGeneralDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -42,7 +42,7 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     #endregion
 		
 		public DcGeneralDataContext() : 
-				base(global::UTTT.Ejemplo.Linq.Data.Properties.Settings.Default.PersonaConnectionString1, mappingSource)
+				base(global::UTTT.Ejemplo.Linq.Data.Properties.Settings.Default.DBPersona2ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -116,6 +116,12 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 		
 		private System.Nullable<System.DateTime> _dteFechaNacimiento;
 		
+		private string _strCorreoElecrronico;
+		
+		private string _strCodigoPostal;
+		
+		private string _strRfc;
+		
 		private EntitySet<Direccion> _Direccion;
 		
 		private EntityRef<CatSexo> _CatSexo;
@@ -138,6 +144,12 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     partial void OnidCatSexoChanged();
     partial void OndteFechaNacimientoChanging(System.Nullable<System.DateTime> value);
     partial void OndteFechaNacimientoChanged();
+    partial void OnstrCorreoElecrronicoChanging(string value);
+    partial void OnstrCorreoElecrronicoChanged();
+    partial void OnstrCodigoPostalChanging(string value);
+    partial void OnstrCodigoPostalChanged();
+    partial void OnstrRfcChanging(string value);
+    partial void OnstrRfcChanged();
     #endregion
 		
 		public Persona()
@@ -287,6 +299,66 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 					this._dteFechaNacimiento = value;
 					this.SendPropertyChanged("dteFechaNacimiento");
 					this.OndteFechaNacimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strCorreoElecrronico", DbType="VarChar(50)")]
+		public string strCorreoElecrronico
+		{
+			get
+			{
+				return this._strCorreoElecrronico;
+			}
+			set
+			{
+				if ((this._strCorreoElecrronico != value))
+				{
+					this.OnstrCorreoElecrronicoChanging(value);
+					this.SendPropertyChanging();
+					this._strCorreoElecrronico = value;
+					this.SendPropertyChanged("strCorreoElecrronico");
+					this.OnstrCorreoElecrronicoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strCodigoPostal", DbType="VarChar(50)")]
+		public string strCodigoPostal
+		{
+			get
+			{
+				return this._strCodigoPostal;
+			}
+			set
+			{
+				if ((this._strCodigoPostal != value))
+				{
+					this.OnstrCodigoPostalChanging(value);
+					this.SendPropertyChanging();
+					this._strCodigoPostal = value;
+					this.SendPropertyChanged("strCodigoPostal");
+					this.OnstrCodigoPostalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strRfc", DbType="VarChar(50)")]
+		public string strRfc
+		{
+			get
+			{
+				return this._strRfc;
+			}
+			set
+			{
+				if ((this._strRfc != value))
+				{
+					this.OnstrRfcChanging(value);
+					this.SendPropertyChanging();
+					this._strRfc = value;
+					this.SendPropertyChanged("strRfc");
+					this.OnstrRfcChanged();
 				}
 			}
 		}

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Persona" Class="DcGeneralDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-TMRB37A\SQLEXPRESS;Initial Catalog=Persona;Persist Security Info=True;User ID=sa" SettingsObjectName="UTTT.Ejemplo.Linq.Data.Properties.Settings" SettingsPropertyName="PersonaConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBPersona2" Class="DcGeneralDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DBPersona2.mssql.somee.com;Initial Catalog=DBPersona2;Persist Security Info=True;User ID=DanielPerez_SQLLogin_3" SettingsObjectName="UTTT.Ejemplo.Linq.Data.Properties.Settings" SettingsPropertyName="DBPersona2ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Persona" Member="Persona">
     <Type Name="Persona">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -9,6 +9,9 @@
       <Column Name="strAMaterno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="idCatSexo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="dteFechaNacimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="strCorreoElecrronico" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strCodigoPostal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strRfc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Persona_Direccion" Member="Direccion" ThisKey="id" OtherKey="idPersona" Type="Direccion" />
       <Association Name="CatSexo_Persona" Member="CatSexo" ThisKey="idCatSexo" OtherKey="id" Type="CatSexo" IsForeignKey="true" />
     </Type>
