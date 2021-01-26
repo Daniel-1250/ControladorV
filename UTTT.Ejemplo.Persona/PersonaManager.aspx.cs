@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 using System.Collections;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
+using EASendMail;
 
 #endregion
 
@@ -108,47 +109,123 @@ namespace UTTT.Ejemplo.Persona
         {
             try
             {
-                DataContext dcGuardar = new DcGeneralDataContext();
-                UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
-                if (this.idPersona == 0)
+                DateTime fechaNacimiento1 = this.dteCalendar.SelectedDate.Date;
+                DateTime fechaHoy = DateTime.Today;
+                int edad = fechaHoy.Year - fechaNacimiento1.Year;
+                if (fechaHoy < fechaNacimiento1.AddYears(edad)) edad--;
+
+                if (edad < 18)
                 {
-                    persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
-                    persona.strNombre = this.txtNombre.Text.Trim();
-                    persona.strAMaterno = this.txtAMaterno.Text.Trim();
-                    persona.strAPaterno = this.txtAPaterno.Text.Trim();
-                    persona.idCatSexo = int.Parse(this.ddlSexo.Text);
-                    DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
-                    persona.dteFechaNacimiento = fechaNacimineto;
-                    persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
-                    persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
-                    persona.strRfc = this.txtRfc.Text.Trim();
-                    dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().InsertOnSubmit(persona);
-                    dcGuardar.SubmitChanges();
-                    this.showMessage("El registro se agrego correctamente.");
-                    this.Response.Redirect("~/PersonaPrincipal.aspx", false);
-                    
+                    this.showMessage("Eres menor de edad no puedes completar el registro");
                 }
-                if (this.idPersona > 0)
+                else
                 {
-                    persona = dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == idPersona);
-                    persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
-                    persona.strNombre = this.txtNombre.Text.Trim();
-                    persona.strAMaterno = this.txtAMaterno.Text.Trim();
-                    persona.strAPaterno = this.txtAPaterno.Text.Trim();
-                    persona.idCatSexo = int.Parse(this.ddlSexo.Text);
-                    DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
-                    persona.dteFechaNacimiento = fechaNacimineto;
-                    persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
-                    persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
-                    persona.strRfc = this.txtRfc.Text.Trim();
-                    dcGuardar.SubmitChanges();
-                    this.showMessage("El registro se edito correctamente.");
-                    this.Response.Redirect("~/PersonaPrincipal.aspx", false);
+                    if (!Page.IsValid)
+                    {
+                        return;
+                    }
+                    DataContext dcGuardar = new DcGeneralDataContext();
+                    UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
+                    if (this.idPersona == 0)
+                    {
+                        persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
+                        persona.strNombre = this.txtNombre.Text.Trim();
+                        persona.strAMaterno = this.txtAMaterno.Text.Trim();
+                        persona.strAPaterno = this.txtAPaterno.Text.Trim();
+                        persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                        DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
+                        persona.dteFechaNacimiento = fechaNacimineto;
+                        persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
+                        persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
+                        persona.strRfc = this.txtRfc.Text.Trim();
+
+
+                        String mensaje = String.Empty;
+                        if (!this.validacion(persona,ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+
+                        if (!this.validaSql(ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+                        if (!this.validaHTML(ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+
+                        dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().InsertOnSubmit(persona);
+                        dcGuardar.SubmitChanges();
+                        this.showMessage("El registro se agrego correctamente.");
+                        this.Response.Redirect("~/PersonaPrincipal.aspx", false);
+
+                    }
+                    if (this.idPersona > 0)
+                    {
+                        persona = dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == idPersona);
+                        persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
+                        persona.strNombre = this.txtNombre.Text.Trim();
+                        persona.strAMaterno = this.txtAMaterno.Text.Trim();
+                        persona.strAPaterno = this.txtAPaterno.Text.Trim();
+                        persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                        DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
+                        persona.dteFechaNacimiento = fechaNacimineto;
+                        persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
+                        persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
+                        persona.strRfc = this.txtRfc.Text.Trim();
+
+                        String mensaje = String.Empty;
+                        if (!this.validacion(persona, ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+
+                        if (!this.validaSql(ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+                        if (!this.validaHTML(ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+
+
+                        dcGuardar.SubmitChanges();
+                        this.showMessage("El registro se edito correctamente.");
+                        this.Response.Redirect("~/PersonaPrincipal.aspx", false);
+                    }
                 }
+                
             }
             catch (Exception _e)
             {
                 this.showMessageException(_e.Message);
+
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx",false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -199,6 +276,178 @@ namespace UTTT.Ejemplo.Persona
                 }
             }
             _control.Items.FindByText(_value).Selected = true;
+        }
+
+        #endregion
+
+        #region Metodos
+        /// <summary>
+        /// Valida datos basicos
+        /// </summary>
+        /// <param name="_persona"></param>
+        /// <param name="_mensaje"></param>
+        /// <returns></returns>
+
+        public bool validacion(UTTT.Ejemplo.Linq.Data.Entity.Persona _persona, ref String _mensaje)
+        {
+
+            // Sexo
+            if (_persona.idCatSexo == -1)
+            {
+                _mensaje = "Seleccione un sexo";
+                return false;
+            }
+
+            //Clave Unica Verifica si solo se utilizan numeros
+            int i = 0;
+            if (int.TryParse(_persona.strClaveUnica, out i) == false)
+            {
+                _mensaje = "La clave unica no es un numero";
+                return false;
+            }
+            if (int.Parse(_persona.strClaveUnica) < 100 || int.Parse(_persona.strClaveUnica) > 999)
+            {
+                _mensaje = "La clave unica Esta fuera de rango";
+                return false;
+            }
+
+            // Valida nombre
+            if (_persona.strNombre.Equals(String.Empty))
+            {
+                _mensaje = "Nombre vacio";
+                return false;
+            }
+            if (_persona.strNombre.Length > 50)
+            {
+                _mensaje = "Los caracteres permitidos para nombre rebasan lo establecido de 50";
+                return false;
+            }
+
+            // Valida APaterno
+            if (_persona.strAPaterno.Equals(String.Empty))
+            {
+                _mensaje = "Apellido paterno vacio";
+                return false;
+            }
+            if (_persona.strAPaterno.Length > 50)
+            {
+                _mensaje = "Los caracteres permitidos para nombre rebasan lo establecido de 50";
+                return false;
+            }
+
+            //Valida Amaterno
+            if (_persona.strAMaterno.Equals(String.Empty))
+            {
+                _mensaje = "Apellido materno vacio";
+                return false;
+            }
+            if (_persona.strAMaterno.Length > 50)
+            {
+                _mensaje = "Los caracteres permitidos para nombre rebasan lo establecido de 50";
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private bool validaSql(ref String _mensaje)
+        {
+            CtrValidaInyeccion valida = new CtrValidaInyeccion();
+
+            string mensajeFuncion = string.Empty;
+
+            if (valida.sqlInyectionValida(this.txtClaveUnica.Text.Trim(), ref mensajeFuncion, "Clave Unica", ref this.txtClaveUnica))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtNombre.Text.Trim(), ref mensajeFuncion, "Nombre", ref this.txtNombre))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtAPaterno.Text.Trim(), ref mensajeFuncion, "A Paterno", ref this.txtAPaterno))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtAMaterno.Text.Trim(), ref mensajeFuncion, "A Materno", ref this.txtAMaterno))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtCorreroElectronico.Text.Trim(), ref mensajeFuncion, "Correo Electronico", ref this.txtCorreroElectronico))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtCodigoPostal.Text.Trim(), ref mensajeFuncion, "Codigo Postal", ref this.txtCodigoPostal))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtRfc.Text.Trim(), ref mensajeFuncion, "RFC", ref this.txtRfc))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            return true;
+        }
+
+        private bool validaHTML(ref String _mensaje)
+        {
+            CtrValidaInyeccion valida = new CtrValidaInyeccion();
+            string mensajeFuncion = string.Empty;
+            if (valida.htmlInyectionValida(this.txtNombre.Text.Trim(), ref mensajeFuncion, "Nombre", ref this.txtNombre))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtAPaterno.Text.Trim(), ref mensajeFuncion, "A paterno",ref this.txtAPaterno))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtAMaterno.Text.Trim(), ref mensajeFuncion, "A Materno", ref this.txtAMaterno))
+            {
+                _mensaje = mensajeFuncion;
+                return false;
+            }
+
+            return true;
+        }
+
+        public void EnviarCorreo(string correoDestino, string asunto, string mensajeCorreo)
+        {
+            string mensaje = "Error al enviar correo.";
+
+            try
+            {
+                SmtpMail objetoCorreo = new SmtpMail("TryIt");
+
+                objetoCorreo.From = "daniperezbac@gmail.com";
+                objetoCorreo.To = correoDestino;
+                objetoCorreo.Subject = asunto;
+                objetoCorreo.TextBody = mensajeCorreo;
+
+                SmtpServer objetoServidor = new SmtpServer("smtp.gmail.com");//servidor proporcionado desde la configuracion de google
+
+                objetoServidor.User = "daniperezbac@gmail.com";
+                objetoServidor.Password = "DPB120500";
+                objetoServidor.Port = 587;
+                objetoServidor.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                SmtpClient objetoCliente = new SmtpClient();
+                objetoCliente.SendMail(objetoServidor, objetoCorreo);
+                mensaje = "Correo Enviado Correctamente.";
+
+
+            }
+            catch (Exception ex)
+            {
+                mensaje = "Error al enviar correo." + ex.Message;
+            }
         }
 
         #endregion

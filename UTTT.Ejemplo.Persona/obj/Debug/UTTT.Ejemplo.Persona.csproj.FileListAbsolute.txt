@@ -54,3 +54,4 @@ E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\obj\Debug\UTTT.Ejemplo.Persona.csproj.CopyComplete
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\obj\Debug\UTTT.Ejemplo.Persona.dll
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\obj\Debug\UTTT.Ejemplo.Persona.pdb
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\EASendMail.dll
