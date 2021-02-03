@@ -477,15 +477,15 @@ namespace UTTT.Ejemplo.Persona
             {
                 SmtpMail objetoCorreo = new SmtpMail("TryIt");
 
-                objetoCorreo.From = "pbdaniel768@gmail.com";
+                objetoCorreo.From = "Correo";
                 objetoCorreo.To = correoDestino;
                 objetoCorreo.Subject = asunto;
                 objetoCorreo.TextBody = mensajeCorreo;
 
                 SmtpServer objetoServidor = new SmtpServer("smtp.gmail.com");//servidor proporcionado desde la configuracion de google
 
-                objetoServidor.User = "pbdaniel768@gmail.com";
-                objetoServidor.Password = "Velkoz#7";
+                objetoServidor.User = "CORREO";
+                objetoServidor.Password = "PASSWORD";
                 objetoServidor.Port = 587;
                 objetoServidor.ConnectType = SmtpConnectType.ConnectSSLAuto;
 
