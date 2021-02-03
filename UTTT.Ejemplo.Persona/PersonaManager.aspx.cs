@@ -83,7 +83,7 @@ namespace UTTT.Ejemplo.Persona
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
-                        this.txtCorreroElectronico.Text = this.baseEntity.strCorreoElecrronico;
+                        this.txtCorreoElectronico.Text = this.baseEntity.strCorreoElecrronico;
                         this.txtCodigoPostal.Text = this.baseEntity.strCodigoPostal;
                         this.txtRfc.Text = this.baseEntity.strRfc;
                         this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
@@ -101,6 +101,18 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al cargar la página");
                 this.Response.Redirect("~/PersonaPrincipal.aspx", false);
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
 
         }
@@ -135,16 +147,22 @@ namespace UTTT.Ejemplo.Persona
                         persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                         DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
                         persona.dteFechaNacimiento = fechaNacimineto;
-                        persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
+                        persona.strCorreoElecrronico = this.txtCorreoElectronico.Text.Trim();
                         persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
                         persona.strRfc = this.txtRfc.Text.Trim();
 
 
                         String mensaje = String.Empty;
-                        if (!this.validacion(persona,ref mensaje))
+                        String mensajeN = String.Empty;
+                        String mensajeAP = String.Empty;
+                        String mensajeAM = String.Empty;
+                        if (!this.validacion(persona,ref mensaje, ref mensajeN, ref mensajeAP, ref mensajeAM))
                         {
                             this.lblMensaje.Text = mensaje;
                             this.lblMensaje.Visible = true;
+                            this.lblNombre.Text = mensajeN;
+                            this.lblApaterno.Text = mensajeAP;
+                            this.lblAmaterno.Text = mensajeAM;
                             return;
                         }
 
@@ -177,14 +195,20 @@ namespace UTTT.Ejemplo.Persona
                         persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                         DateTime fechaNacimineto = this.dteCalendar.SelectedDate.Date;
                         persona.dteFechaNacimiento = fechaNacimineto;
-                        persona.strCorreoElecrronico = this.txtCorreroElectronico.Text.Trim();
+                        persona.strCorreoElecrronico = this.txtCorreoElectronico.Text.Trim();
                         persona.strCodigoPostal = this.txtCodigoPostal.Text.Trim();
                         persona.strRfc = this.txtRfc.Text.Trim();
 
                         String mensaje = String.Empty;
-                        if (!this.validacion(persona, ref mensaje))
+                        String mensajeN = String.Empty;
+                        String mensajeAP = String.Empty;
+                        String mensajeAM = String.Empty;
+                        if (!this.validacion(persona, ref mensaje,ref mensajeN,ref mensajeAP,ref mensajeAM))
                         {
                             this.lblMensaje.Text = mensaje;
+                            this.lblNombre.Text = mensajeN;
+                            this.lblApaterno.Text = mensajeAP;
+                            this.lblAmaterno.Text = mensajeAM;
                             this.lblMensaje.Visible = true;
                             return;
                         }
@@ -286,9 +310,13 @@ namespace UTTT.Ejemplo.Persona
         /// </summary>
         /// <param name="_persona"></param>
         /// <param name="_mensaje"></param>
+        /// <param name="_mensajeN"></param>
+        /// <param name="_mensajeAP"></param>
+        /// <param name="_mensajeAM"></param>
         /// <returns></returns>
 
-        public bool validacion(UTTT.Ejemplo.Linq.Data.Entity.Persona _persona, ref String _mensaje)
+        public bool validacion(UTTT.Ejemplo.Linq.Data.Entity.Persona _persona, ref String _mensaje,ref String _mensajeN
+                                                                             , ref String _mensajeAP, ref String _mensajeAM)
         {
 
             // Sexo
@@ -323,6 +351,14 @@ namespace UTTT.Ejemplo.Persona
                 return false;
             }
 
+            string nombre = _persona.strNombre.Trim();
+
+            if (nombre.Length < 3 )
+            {
+                _mensajeN = "Escriba mas de 3 digitos en Nombre";
+                return false;
+            }
+
             // Valida APaterno
             if (_persona.strAPaterno.Equals(String.Empty))
             {
@@ -335,6 +371,14 @@ namespace UTTT.Ejemplo.Persona
                 return false;
             }
 
+            string apaterno = _persona.strAPaterno.Trim();
+
+            if (apaterno.Length < 3)
+            {
+                _mensajeAP = "Escriba mas de 3 digitos en Apellido paterno";
+                return false;
+            }
+
             //Valida Amaterno
             if (_persona.strAMaterno.Equals(String.Empty))
             {
@@ -344,6 +388,13 @@ namespace UTTT.Ejemplo.Persona
             if (_persona.strAMaterno.Length > 50)
             {
                 _mensaje = "Los caracteres permitidos para nombre rebasan lo establecido de 50";
+                return false;
+            }
+
+            string amaterno = _persona.strAMaterno.Trim();
+            if (amaterno.Length < 3)
+            {
+                _mensajeAM = "Escriba mas de 3 digitos en apellido Materno";
                 return false;
             }
 
@@ -377,7 +428,7 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = mensajeFuncion;
                 return false;
             }
-            if (valida.sqlInyectionValida(this.txtCorreroElectronico.Text.Trim(), ref mensajeFuncion, "Correo Electronico", ref this.txtCorreroElectronico))
+            if (valida.sqlInyectionValida(this.txtCorreoElectronico.Text.Trim(), ref mensajeFuncion, "Correo Electronico", ref this.txtCorreoElectronico))
             {
                 _mensaje = mensajeFuncion;
                 return false;
@@ -426,15 +477,15 @@ namespace UTTT.Ejemplo.Persona
             {
                 SmtpMail objetoCorreo = new SmtpMail("TryIt");
 
-                objetoCorreo.From = "daniperezbac@gmail.com";
+                objetoCorreo.From = "pbdaniel768@gmail.com";
                 objetoCorreo.To = correoDestino;
                 objetoCorreo.Subject = asunto;
                 objetoCorreo.TextBody = mensajeCorreo;
 
                 SmtpServer objetoServidor = new SmtpServer("smtp.gmail.com");//servidor proporcionado desde la configuracion de google
 
-                objetoServidor.User = "daniperezbac@gmail.com";
-                objetoServidor.Password = "DPB120500";
+                objetoServidor.User = "pbdaniel768@gmail.com";
+                objetoServidor.Password = "Velkoz#7";
                 objetoServidor.Port = 587;
                 objetoServidor.ConnectType = SmtpConnectType.ConnectSSLAuto;
 

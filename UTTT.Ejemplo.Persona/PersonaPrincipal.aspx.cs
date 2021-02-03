@@ -11,6 +11,7 @@ using System.Linq.Expressions;
 using System.Collections;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
+using EASendMail;
 
 #endregion
 
@@ -47,7 +48,19 @@ namespace UTTT.Ejemplo.Persona
             }
             catch (Exception _e)
             {
-                this.showMessage("Ha ocurrido un problema al cargar la página");               
+                this.showMessage("Ha ocurrido un problema al cargar la página");
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -60,6 +73,18 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 this.showMessage("Ha ocurrido un problema al buscar");
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -77,6 +102,18 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 this.showMessage("Ha ocurrido un problema al agregar");
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -112,6 +149,18 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 throw _e;
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -136,6 +185,18 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 this.showMessage("Ha ocurrido un problema al seleccionar");
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -159,6 +220,18 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 throw _e;
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -177,6 +250,18 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 throw _e;
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
             }
         }
 
@@ -195,9 +280,58 @@ namespace UTTT.Ejemplo.Persona
             catch (Exception _e)
             {
                 throw _e;
+                // Qué ha sucedido
+                var mensaje = "Error message: " + _e.Message;
+                // Información sobre la excepción interna
+                if (_e.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + _e.InnerException.Message;
+                }
+                // Dónde ha sucedido
+                mensaje = mensaje + " Stack trace: " + _e.StackTrace;
+                this.Response.Redirect("~/PageError.aspx", false);
+
+                this.EnviarCorreo("18300997@uttt.edu.mx", "Exception", mensaje);
+            }
+        }
+
+        public void EnviarCorreo(string correoDestino, string asunto, string mensajeCorreo)
+        {
+            string mensaje = "Error al enviar correo.";
+
+            try
+            {
+                SmtpMail objetoCorreo = new SmtpMail("TryIt");
+
+                objetoCorreo.From = "pbdaniel768@gmail.com";
+                objetoCorreo.To = correoDestino;
+                objetoCorreo.Subject = asunto;
+                objetoCorreo.TextBody = mensajeCorreo;
+
+                SmtpServer objetoServidor = new SmtpServer("smtp.gmail.com");//servidor proporcionado desde la configuracion de google
+
+                objetoServidor.User = "pbdaniel768@gmail.com";
+                objetoServidor.Password = "Velkoz#7";
+                objetoServidor.Port = 587;
+                objetoServidor.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                SmtpClient objetoCliente = new SmtpClient();
+                objetoCliente.SendMail(objetoServidor, objetoCorreo);
+                mensaje = "Correo Enviado Correctamente.";
+
+
+            }
+            catch (Exception ex)
+            {
+                mensaje = "Error al enviar correo." + ex.Message;
             }
         }
 
         #endregion
+
+        protected void dgvPersonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
