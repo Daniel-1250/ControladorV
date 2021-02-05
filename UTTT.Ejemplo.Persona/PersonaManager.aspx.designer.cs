@@ -222,6 +222,15 @@ namespace UTTT.Ejemplo.Persona
         protected global::System.Web.UI.WebControls.Calendar dteCalendar;
 
         /// <summary>
+        /// Control lblCalendario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCalendario;
+
+        /// <summary>
         /// Control txtCorreoElectronico.
         /// </summary>
         /// <remarks>

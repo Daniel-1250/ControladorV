@@ -59,9 +59,6 @@ namespace UTTT.Ejemplo.Persona
                     }
                     List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
                     CatSexo catTemp = new CatSexo();
-                    catTemp.id = -1;
-                    catTemp.strValor = "Seleccionar";
-                    lista.Insert(0, catTemp);
                     this.ddlSexo.DataTextField = "strValor";
                     this.ddlSexo.DataValueField = "id";
                     this.ddlSexo.DataSource = lista;
@@ -126,12 +123,15 @@ namespace UTTT.Ejemplo.Persona
                 int edad = fechaHoy.Year - fechaNacimiento1.Year;
                 if (fechaHoy < fechaNacimiento1.AddYears(edad)) edad--;
 
+                
                 if (edad < 18)
                 {
-                    this.showMessage("Eres menor de edad no puedes completar el registro");
+                    this.lblCalendario.Visible = true;
+                    this.lblCalendario.Text = "Eres menor de edad no puedes completar el registro";
                 }
                 else
                 {
+                    this.lblCalendario.Visible = false;
                     if (!Page.IsValid)
                     {
                         return;
@@ -187,6 +187,7 @@ namespace UTTT.Ejemplo.Persona
                     }
                     if (this.idPersona > 0)
                     {
+                        
                         persona = dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == idPersona);
                         persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
                         persona.strNombre = this.txtNombre.Text.Trim();
@@ -477,15 +478,15 @@ namespace UTTT.Ejemplo.Persona
             {
                 SmtpMail objetoCorreo = new SmtpMail("TryIt");
 
-                objetoCorreo.From = "Correo";
+                objetoCorreo.From = "TUCORREO";
                 objetoCorreo.To = correoDestino;
                 objetoCorreo.Subject = asunto;
                 objetoCorreo.TextBody = mensajeCorreo;
 
                 SmtpServer objetoServidor = new SmtpServer("smtp.gmail.com");//servidor proporcionado desde la configuracion de google
 
-                objetoServidor.User = "CORREO";
-                objetoServidor.Password = "PASSWORD";
+                objetoServidor.User = "TUCORREO";
+                objetoServidor.Password = "TUCONTRASEÑA";
                 objetoServidor.Port = 587;
                 objetoServidor.ConnectType = SmtpConnectType.ConnectSSLAuto;
 
