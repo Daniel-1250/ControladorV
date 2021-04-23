@@ -40,3 +40,8 @@ E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\obj\Release\UTTT.Ejemplo.Persona.dll
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\obj\Release\UTTT.Ejemplo.Persona.pdb
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\EASendMail.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\AjaxControlToolkit.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\EntityFramework.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\EntityFramework.SqlServer.dll
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\EntityFramework.xml
+E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona\bin\EntityFramework.SqlServer.xml

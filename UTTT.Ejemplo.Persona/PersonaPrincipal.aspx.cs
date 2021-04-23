@@ -29,6 +29,11 @@ namespace UTTT.Ejemplo.Persona
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["strNombre"] == null)
+            {
+                Response.Redirect("LoginUser.aspx");
+                lblUsuarioDetalle.Text = "strNombre : " + Session["strNombre"];
+            }
             try
             {
                 Response.Buffer = true;
@@ -44,6 +49,16 @@ namespace UTTT.Ejemplo.Persona
                     this.ddlSexo.DataValueField = "id";
                     this.ddlSexo.DataSource = lista;
                     this.ddlSexo.DataBind();
+
+                    List<CatEstadoCivil> listaEstadoCivil = dcTemp.GetTable<CatEstadoCivil>().ToList();
+                    CatEstadoCivil tempEstadoCivil = new CatEstadoCivil();
+                    tempEstadoCivil.id = -1;
+                    tempEstadoCivil.strValor = "Todos";
+                    listaEstadoCivil.Insert(0, tempEstadoCivil);
+                    this.ddlEstadoCivil.DataTextField = "strValor";
+                    this.ddlEstadoCivil.DataValueField = "id";
+                    this.ddlEstadoCivil.DataSource = listaEstadoCivil;
+                    this.ddlEstadoCivil.DataBind();
                 }
             }
             catch (Exception _e)
@@ -124,6 +139,7 @@ namespace UTTT.Ejemplo.Persona
                 DataContext dcConsulta = new DcGeneralDataContext();
                 bool nombreBool = false;
                 bool sexoBool = false;
+                bool estadoCivil = false;
                 if (!this.txtNombre.Text.Equals(String.Empty))
                 {
                     nombreBool = true;
@@ -133,12 +149,24 @@ namespace UTTT.Ejemplo.Persona
                     sexoBool = true;
                 }
 
-                Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Persona, bool>> 
+                if (this.ddlEstadoCivil.Text != "-1")
+                {
+                    estadoCivil = true;
+                }
+
+                Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Persona, bool>>
                     predicate =
                     (c =>
-                    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&             
+                    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&
+                    ((estadoCivil) ? c.idCatEstadoCivil == int.Parse(this.ddlEstadoCivil.Text) : true) &&
                     ((nombreBool) ? (((nombreBool) ? c.strNombre.Contains(this.txtNombre.Text.Trim()) : false)) : true)
                     );
+                //Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Persona, bool>> 
+                //    predicate =
+                //    (c =>
+                //    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&             
+                //    ((nombreBool) ? (((nombreBool) ? c.strNombre.Contains(this.txtNombre.Text.Trim()) : false)) : true)
+                //    );
 
                 predicate.Compile();
 
@@ -148,7 +176,7 @@ namespace UTTT.Ejemplo.Persona
             }
             catch (Exception _e)
             {
-                throw _e;
+                
                 // Qué ha sucedido
                 var mensaje = "Error message: " + _e.Message;
                 // Información sobre la excepción interna
@@ -244,7 +272,7 @@ namespace UTTT.Ejemplo.Persona
                     c => c.id == _idPersona);
                 dcDelete.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().DeleteOnSubmit(persona);
                 dcDelete.SubmitChanges();
-                this.showMessage("El registro se agrego correctamente.");
+                this.showMessage("El registro se elimino correctamente.");
                 this.DataSourcePersona.RaiseViewChanged();                
             }
             catch (Exception _e)
@@ -332,6 +360,17 @@ namespace UTTT.Ejemplo.Persona
         protected void dgvPersonas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCerrarS_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("LoginUser.aspx");
         }
     }
 }

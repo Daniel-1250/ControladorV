@@ -7,5 +7,9 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 {
     public partial class Persona
     {
+        public override string ToString()
+        {
+            return this.strNombre;
+        }
     }
 }

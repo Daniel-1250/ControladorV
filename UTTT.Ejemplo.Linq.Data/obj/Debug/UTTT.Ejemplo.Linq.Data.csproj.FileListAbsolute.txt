@@ -21,7 +21,6 @@ C:\Users\User\Desktop\UTTT\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Lin
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\bin\Debug\UTTT.Ejemplo.Linq.Data.dll.config
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\bin\Debug\UTTT.Ejemplo.Linq.Data.dll
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\bin\Debug\UTTT.Ejemplo.Linq.Data.pdb
-E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\obj\Debug\UTTT.Ejemplo.Linq.Data.csprojAssemblyReference.cache
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\obj\Debug\UTTT.Ejemplo.Linq.Data.csproj.CoreCompileInputs.cache
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\obj\Debug\UTTT.Ejemplo.Linq.Data.dll
 E:\OMEN\Documentos\UTTT\8vo_Cuatri\DesarrolloWebProfesional\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Linq.Data\obj\Debug\UTTT.Ejemplo.Linq.Data.pdb

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f5916a2024f94e4c985994144c0c577d" Name="Diagram1">
+        <EntityTypeShape EntityType="DBPersona3Model.CatEstadoCivil" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBPersona3Model.CatSexo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBPersona3Model.CatUsuario" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBPersona3Model.Direccion" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBPersona3Model.Persona" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBPersona3Model.Usuario" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="DBPersona3Model.FK_Persona_CatEstadoCivil" ManuallyRouted="false" />
+        <AssociationConnector Association="DBPersona3Model.FK_Persona_CatSexo" ManuallyRouted="false" />
+        <AssociationConnector Association="DBPersona3Model.FK_Usuario_CatUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="DBPersona3Model.FK_Direccion_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="DBPersona3Model.FK_USUARIO_PERSONA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
